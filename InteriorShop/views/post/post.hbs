@@ -1,0 +1,330 @@
+{{>header post="post"}}
+{{>hero-category-post design-post-category = design-post-category}}
+
+<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Changcannang</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Trang Chủ</a>
+                        <span>Bài Viết</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="posting__area" id="posting__area">
+    <div class="col-lg-12 col-md-7 posting">
+        <p>Chia sẻ thiết kế của bạn ở đây....</p>
+    </div>
+</section>
+<section class="post__menu">
+    <div>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-7">
+                <div class="product__discount">
+                    <div class="section-title product__discount__title">
+                        <h4 style="text-align:center; padding-top: 30px">Bài viết</h4>
+                    </div>
+                    <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="filter__sort">
+                                    <span>Bộ lọc</span>
+                                    <select id="sort-price">
+                                        <option value="0">Tất cả bài viết</option>
+                                        <option value="-1">Mới nhất</option>
+                                        <option value="1">Nổi bậc nhất</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="filter__found">
+                                    <h6><span>{{sizeOfpost}}</span> bài viết được tìm thấy</h6>
+                                </div>
+                            </div>
+                            <section class="col-lg-12 test__post">
+                                <div class="Show__Post__List">
+                                    <div class="post-item" id="post-item">
+                                        <div class="post-set-bg" style="background-image: url('/img/product_8.jpg');"></div>
+                                        <div class="show-post-content">
+                                            <div>Username</div>
+                                            <div>Post title</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-item">
+                                        <div class="post-set-bg" style="background-image: url('/img/product_1.jpg');"></div>
+                                        <div class="show-post-content">
+                                            <div>Username</div>
+                                            <div>Post title</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-item">
+                                        <div class="post-set-bg" style="background-image: url('/img/product_2.jpg');"></div>
+                                        <div class="show-post-content">
+                                            <div>Username</div>
+                                            <div>Post title</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-item">
+                                        <div class="post-set-bg" style="background-image: url('/img/product_3.jpg');"></div>
+                                        <div class="show-post-content">
+                                            <div>Username</div>
+                                            <div>Post title</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-item">
+                                        <div class="post-set-bg" style="background-image: url('/img/product_5.jpg');"></div>
+                                        <div class="show-post-content">
+                                            <div>Username</div>
+                                            <div>Post title</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-item">
+                                        <div class="post-set-bg" style="background-image: url('/img/product_6.jpg');"></div>
+                                        <div class="show-post-content">
+                                            <div>Username</div>
+                                            <div>Post title</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-post-title" id="myModalLabel" >Tạo bài chia sẻ</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="infor__author">
+                    <div class="avatar"><img src="img/avatar.jpg" alt=""></div>
+                    <div class="infor__details">
+                        <div class="user__name">{{user.name}}Username</div>
+                        <div class="point">{{user.point}}<span>points<i class="fa fa-star"></i></span></div>
+                    </div>
+                </div>
+                <div class="post__content">
+                    <div class="post__title">
+                        <input type="text" name="post-title" id="post-title" class="input__title" placeholder="Tiêu đề bài viết" oninput="changeFontStyle(event)" required/></div>
+                    <div class="content">
+                        <div class="text__box" contenteditable="true" id="post-content"></div>
+                    </div>
+                    <div class="choose__Post__Category">
+                        <div class="form__Post__Category">
+                            <label for="" class="form-label">Chọn Danh Mục</label>
+                            <br>
+                            <select>
+                                <option class="">Thiết kế nội thất gia đình</option>
+                                <option value="">Thiết kế nội thất doanh nghiệp</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <div class="insert-image">
+                            <label for="image-upload" class="custom-file-upload">
+                            Bạn sẽ thêm ảnh vào bài viết chứ? <i class="fa fa-image"></i>
+                            </label>
+                            <input type="file" id="image-upload" multiple>
+                        </div>
+                        <div id="image-preview" class="image-preview"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" id="posting" style="background-color:blue;">Đăng</button>
+                <button type="button" class="btn btn-secondary" id="post-btn" data-dismiss="modal" style="background-color:blue;">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- when click to each -->
+<!-- Bootstrap Post Details Modal -->
+<div class="modal fade" id="myPostDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-post-title" id="myModalLabel" >Bài viết của {{user.name}}</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="infor__author">
+                    <div class="avatar"><img src="img/avatar.jpg" alt=""></div>
+                    <div class="infor__details">
+                        <div class="user__name">{{user.name}}Username</div>
+                        <div class="point">{{user.point}}<span>points<i class="fa fa-star"></i></span></div>
+                        <div class="date">{{date}}dd/mm/yy</div>
+                    </div>
+                </div>
+                <div class="post__content">
+                    <h5 class="post__title font-weight-bold ml-2">
+                        Tiêu đề: {{postTitle}} </h5>
+                    <div class="content">
+                        <div class="text__box__show">This is post content</div>
+                    </div>
+                    <div class="show__images__data">
+                        {{!-- ........code..... --}}
+                    </div>
+                    <div class="react d-flex p-1 mt-3">
+                        <div class="num__of__likes">
+                            <i class="fa fa-thumbs-up"></i> 
+                        </div>
+                        <div class="num__of__dislikes">
+                            <i class="fa fa-thumbs-down"></i> 
+                        </div>
+                        {{!-- <i class="fa fa-comment"></i> --}}
+                    </div>
+                    <div class="comment__section mt-3">
+                        <div class="show__comments" id="show__comments">
+                            {{!-- {{#each}} --}}
+                            <div class="infor__author">
+                                <div class="avatar"><img src="/img/avatar.jpg" alt=""></div>
+                                <div class="user__name">username</div>
+                            </div>
+                            {{!-- {{/each}} --}}
+                        </div>
+                        <div class="add__comment">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-closed-PostDetails btn-secondary" id="post-btn" data-dismiss="modal" style="background-color:blue; width: 100%; border-radius: 5px">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- click vào phần 'Chia sẻ thiết kế của bạn ở đây....' sẽ hiện ra modal đăng bài--}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const postingArea = document.getElementById('posting__area');
+        postingArea.addEventListener('click', function () {
+            $('#myModal').modal('show');
+        });
+    });
+
+</script>
+{{!-- click vào một post-box sẽ hiện ra modal show chi tiết bài viết --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const postingArea = document.getElementById('post-item');
+        postingArea.addEventListener('click', function () {
+            $('#myPostDetails').modal('show');
+        });
+    });
+
+</script>
+
+<script>
+    $('post-btn').on('click', e =>{
+        e.preventDefault();
+        let idCategoryPost = $('input[name=idCategoryPost]').val();
+        let idPost = $('input[name=idPost]').val();
+        let Uername = $('input[name=Username]').val();
+        let points = $('input[name=points]').val();
+        let postTitle= $('input[name=title]').val();
+        let postContent = $('input[name=content]').val();
+        let imgs = $('input[name=images]').val();
+        console.log(idCategoryPost, idPost,Username, points titlePost, postContent, imgs);
+        $ajax({
+            url: `/api/post/post`,
+            method: 'POST',
+            data: {
+                idCategoryPost,
+                idPost,
+                postTitle,
+                Username,
+                points,
+                postContent
+            },
+            success: function(data){
+                console.log(data);
+                loadPosting(1);
+                $('input[name=title]').val("");
+                $('input[name=content]').val("");   
+            }
+        })
+    })
+</script>
+{{!-- phần này là độ dài posting area sẽ tự điều chỉnh chiều cao theo đồ dài văn bản :D --}}
+<script>
+    const textBox = document.getElementById('post-content');
+    textBox.addEventListener('input', function () {
+        textBox.style.height = 'auto'; 
+        textBox.style.height = `${textBox.scrollHeight}px`; 
+    });
+    function changeFontStyle(event) {
+        const input = event.target;
+        if (input.value !== "") {
+            input.classList.add("not-empty");
+        } else {
+            input.classList.remove("not-empty");
+        }
+    }
+</script>
+{{!-- show các ảnh đã chọn --}}
+<script>
+    document.getElementById("image-upload").addEventListener("change", function(event) {
+    const imagePreview = document.getElementById("image-preview");
+    imagePreview.innerHTML = ""; 
+
+    const files = event.target.files;
+    for (const file of files) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+            const image = document.createElement("img");
+            image.src = e.target.result;
+            imagePreview.appendChild(image);
+        };
+        reader.readAsDataURL(file);
+    }
+    });
+
+</script>
+{{!-- reset data sau khi bấm nút đăng --}}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const postTitleInput = document.getElementById("post-title");
+        const postContentDiv = document.getElementById("post-content");
+        const postCategorySelect = document.querySelector(".choose__Post__Category select");
+        const imageUploadInput = document.getElementById("image-upload");
+        const imagePreviewDiv = document.getElementById("image-preview");
+        const postingButton = document.getElementById("posting");
+        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+
+        postingButton.addEventListener("click", function() {
+
+            postTitleInput.value = "";
+            postContentDiv.innerHTML = "";
+            postCategorySelect.selectedIndex = 0;
+            imageUploadInput.value = "";
+            imagePreviewDiv.innerHTML = "";
+
+        });
+    });
+</script>
+
+
+
+
+

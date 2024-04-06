@@ -1,0 +1,68 @@
+body{
+    font-family: inherit;
+  }
+  
+  .title{
+      color: aqua;
+      text-align: center;
+      margin-bottom: 50px;
+  }
+  
+  .container{
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .login-content{
+      height: auto;
+      max-width: 500px;
+      flex-grow: 1;
+      background: rgba(34, 63, 68, 0.8);
+      padding: 40px 40px 40px ;
+      box-shadow:0px 0px 20px 5px rgba(255, 255, 255, 0.8);
+  }
+  
+  .login-form{
+      width: 400px;
+  }
+  
+  .form-group{
+      border-bottom: 1px solid #fff;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      /* width: 100%; */
+      display: flex;
+      align-items: center;
+  }
+  
+  .form-control{
+      background: transparent;
+      border: 0;
+      outline: 0;
+      color: white;
+      margin-left: 10px;
+      width: 100%;
+  }
+  
+  .submit{
+      background: none;
+      text-align: center;
+      border: 1px solid #f5f5f5;
+      width: 100%;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      transition: 0.25s ease-in-out;
+      margin-top: 30px;
+      margin-bottom: 30px;
+  }
+  
+  .submit:hover{
+      border: 1px solid blue;
+      color: #fff;
+  }
+  
+  .signuphere{
+      text-align: center;
+  }

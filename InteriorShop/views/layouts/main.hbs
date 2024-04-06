@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='shortcut icon' type="image/png" href='/img/title/icon-shop.png' />
+    <title>Changcannang | Interior Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-3oP+x1pev5q4e3ivFVcRjiCxNmj0l34NsoC4fFJV/FEmkIZFdgoDwIUnu6MvP8oZ" crossorigin="anonymous">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-217415535-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-217415535-1');
+    </script>
+
+</head>
+
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="img/logo.png" alt=""></a>
+        </div>
+
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__auth">
+                {{#if user}}
+                <a href="/myaccount" style="cursor: auto;">
+                    <i class="fas fa-user-check" style="margin-left: 10px;"></i>
+                    Hello {{user.name}}
+                </a>
+                <a href="/myaccount">
+                    <i class="fa fa-user" style="margin-left: 10px;"></i>
+                    Tài Khoản</a>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt" style="margin-left: 10px;"></i>
+                    Đăng Xuất</a>
+                {{else}}
+                <a href="/login">
+                    <i class="fas fa-sign-in-alt" style="margin-left: 10px;"></i>
+                    Đăng nhập</a>
+                <a href="/register"><i class="fa fa-user-plus" style="margin-left: 10px;"></i>
+                    Đăng ký</a>
+                {{/if}}
+            </div>
+        </div>
+
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="/home">Trang chủ</a></li>
+                <li><a href="/shop-grid">Mua sắm</a></li>
+                <li><a href="/post">Bài viết</a></li>
+                <li><a href="/contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
+    </div>
+
+    {{{body}}}
+
+    {{>footer}}
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    {{{_sections.slider_script}}}
+    {{{_sections.script}}}
+    {{{_sections.sort_by_price}}}
+    </body>
+</html>

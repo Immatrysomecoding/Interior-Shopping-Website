@@ -1,0 +1,406 @@
+{{>header shop="shop"}}
+{{>hero category= listCategory}}
+
+{{#each category}}
+<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>{{this.name}}</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/home">Trang Chủ</a>
+                        <a href="./{{this.idCategory}}">{{this.name}}</a>
+                        <span>{{this.name}}</span>
+                        <input name="idCategory" type="hidden" value="{{this.idCategory}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/each}}
+
+{{#each product}}
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large" src="{{this.image}}" alt="">
+                    </div>
+                    <div class="product__details__pic__slider owl-carousel">
+                        <img data-imgbigurl="{{this.image}}" src="{{this.image}}" alt="">
+
+                        {{#each this.listImgExtra}}
+                        <img data-imgbigurl="{{this}}" src="{{this}}" alt="">
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>{{this.name}}</h3>
+                    <div class="product__details__rating" id="star-rating">
+
+                    </div>
+                    <div class="product__details__price">{{format this.price}}</div>
+                    <p>{{this.details}}</p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input id="numProductAddShopping" type="text" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="addShoppingCart('{{this.idProduct}}')" class="primary-btn" style="border:aliceblue"
+                        data-toggle="modal" data-target="#notification">Thêm vào giỏ
+                        hàng</button>
+                    <ul>
+                        <li><b>Tình trạng</b> <span id="quantity">Còn {{this.quantity}} sản phẩm</span></li>
+                        <li><b>Thời gian giao hàng</b> <span>1 ngày <samp>Nhận miễn phí ngay hôm nay</samp></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                aria-selected="true">Mô tả</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" aria-selected="false">Đánh
+                                giá <span id="numRating">(1)</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Mô tả</h6>
+                                <p>{{this.details}}</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <form>
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                {{#if ../user}}
+
+                                                <div class="col-3">
+                                                    <input type="number" name="rating" class="form-control"
+                                                        placeholder="Số sao" min="0" max="5" required>
+                                                </div>
+                                                <div class="col-7">
+                                                    <input type="text" class="form-control" name="content"
+                                                        placeholder="Nhận xét" required>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <button type="button" class="btn btn-primary" name="post-rating"
+                                                        id="post-rating">Gửi</button>
+                                                    <input type="hidden" name="emailUser" value="{{../user.email}}">
+
+                                                </div>
+
+
+                                                {{/if}}
+                                                <input type="hidden" name="productId" value="{{this.idProduct}}">
+                                                {{#unless ../user}}
+                                                <div class="alert alert-warning" role="alert">
+                                                    Bạn vui lòng đăng nhập để đánh giá sản phẩm
+                                                </div>
+                                                {{/unless}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br>
+                                <h6>Đánh giá</h6>
+
+                                <div id="ratings">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{{/each}}
+<!-- Product Details Section End -->
+
+<!-- Related Product Section Begin -->
+<section class="related-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Sản phẩm liên quan</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{#each relatedProduct}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="{{this.image}}">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="/shop-grid/{{this.url}}">{{this.name}}</a></h6>
+                        <h5>{{format this.price}}</h5>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="notification-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notification-label">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="numProductWasAdded">
+                Đã thêm 1 sản phẩm vào giỏ hàng
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Related Product Section End -->
+
+{{#section 'script'}}
+<script>
+    $('#post-rating').on('click', e => {
+        e.preventDefault();
+        let idCategory = $('input[name=idCategory]').val();
+        let rating = $('input[name=rating]').val();
+        let content = $('input[name=content]').val();
+        let idProduct = $('input[name=productId]').val();
+        let emailUser = $('input[name=emailUser]').val();
+        console.log(idCategory, idProduct, rating, content);
+        $.ajax({
+            url: `/api/product/rate`,
+            method: 'POST',
+            data: {
+                idCategory,
+                idProduct,
+                emailUser,
+                rating,
+                content,
+            },
+            success: function (data) {
+                console.log(data);
+                loadRatings(1);
+                $('input[name=rating]').val(0);
+                $('input[name=content]').val("");
+            }
+
+        });
+
+    });
+
+    function loadRatings(currentPage) {
+
+        let idCategory = $('input[name=idCategory]').val();
+        let productId = $('input[name=productId]').val();
+        console.log(idCategory, productId)
+        $.getJSON(`/api/product/${$('input[name=productId]').val()}/ratings?page=${currentPage}`, async function (data) {
+            console.log(data);
+            const listRating = data.data;
+            const n = data.count;
+            let numStar = 0;
+            let html = ``;
+            for (const rating of listRating) {
+                numStar += rating.rating;
+                html += `<div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                                                        class="img img-rounded img-fluid"/>
+                                                </div>
+                                                <div class="col-md-11">`
+                html += `<p>${rating.emailUser}</p>`
+                for (let i = 0; i < rating.rating; i++) {
+                    html += `<span class="float-right"><i
+                    class="text-warning fa fa-star" ></i ></span>`;
+                }
+
+
+                html += `<div class="clearfix"></div>`;
+                html += `<p>${rating.content}</p> 
+                </div>
+                                            </div>
+
+                                        </div>
+                                    </div> <br> `;
+
+            }
+            html = await getPagination(html, n, currentPage);
+            let htmlStar = ``;
+            let lengthStar = numStar / n;
+            for (let i = 0; i < lengthStar; i++) {
+                htmlStar += ` <i class="fa fa-star"></i>`;
+            }
+            htmlStar += ` <i class="fa fa-star-half-o"></i>`;
+            htmlStar += `<span>(${n} Đánh Giá)</span>`;
+            $('#star-rating').html(htmlStar);
+            $('#numRating').html(`(${n})`);
+            $('#ratings').html(html);
+        });
+    }
+
+    function getPagination(html, n, currentPage) {
+        sizePage = Math.max(parseInt(n / 6 + 1));
+
+        if (currentPage == 1 & n <= 6) {
+            return html;
+        } else if (currentPage == 1 & n <= 12) {
+            html += `<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">`
+            html += `<li class="page-item disabled">
+            <button class="page-link"  >Previous</button>
+            </li>`;
+            html += `<li  class="page-item active"><button class="page-link" onclick="loadRatings(1)" >1</button></li>`;
+            html += `<li class="page-item"><button class="page-link" onclick="loadRatings(2)" >2</button></li>`;
+            html += `<li class="page-item">
+                <button class="page-link"onclick="loadRatings(2)" >Next</button>
+                    </li>
+                    </ul>
+                    </nav>`
+        } else if (currentPage == 1) {
+            html += `<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">`
+            html += `<li class="page-item disabled">
+            <button class="page-link"  >Previous</button>
+            </li>`;
+            html += `<li  class="page-item active"><button class="page-link" onclick="loadRatings(1)" >1</button></li>`;
+            html += `<li class="page-item"><button class="page-link" onclick="loadRatings(2)" >2</button></li>`;
+            html += `<li class="page-item"><button class="page-link"onclick="loadRatings(3)"  >3</button></li>`;
+            html += `<li class="page-item">
+                <button class="page-link"onclick="loadRatings(2)" >Next</button>
+                    </li>
+                    </ul>
+                    </nav>`
+        } else if (currentPage == 2 & n <= 12) {
+            html += `<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">`
+            html += `<li class="page-item" >
+            <button class="page-link" onclick="loadRatings(${currentPage - 1})">Previous</button>
+            </li>`
+            html += `<li  class="page-item"><button class="page-link" onclick="loadRatings(1)" >1</button></li>`;
+            html += `<li class="page-item active"><button class="page-link" onclick="loadRatings(2)" >2</button></li>`;
+
+            html += `<li class="page-item disabled">
+                <button class="page-link" onclick="loadRatings(3)" >Next</button>
+                    </li>
+                    </ul>
+                    </nav>`
+        }
+        else if (currentPage == 2) {
+            html += `<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">`
+            html += `<li class="page-item" >
+            <button class="page-link" onclick="loadRatings(${currentPage - 1})">Previous</button>
+            </li>`
+            html += `<li  class="page-item"><button class="page-link" onclick="loadRatings(1)" >1</button></li>`;
+            html += `<li class="page-item active"><button class="page-link" onclick="loadRatings(2)" >2</button></li>`;
+            html += `<li class="page-item"><button class="page-link"onclick="loadRatings(3)"  >3</button></li>`;
+            html += `<li class="page-item">
+                <button class="page-link" onclick="loadRatings(3)" >Next</button>
+                    </li>
+                    </ul>
+                    </nav>`
+        }
+        else if (currentPage >= sizePage) {
+            html += `<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">`
+            html += `<li class="page-item" >
+            <button class="page-link" onclick="loadRatings(${currentPage - 1})">Previous</button>
+            </li>`
+            html += `<li  class="page-item"><button class="page-link" onclick="loadRatings(${currentPage - 2})" >${currentPage - 2}</button></li>`;
+            html += `<li class="page-item"><button class="page-link" onclick="loadRatings(${currentPage - 1})" >${currentPage - 1}</button></li>`;
+            html += `<li class="page-item active"><button class="page-link"onclick="loadRatings(${currentPage})"  >${currentPage}</button></li>`;
+            html += `<li class="page-item">
+                <button class="page-link disabled" onclick="loadRatings(${currentPage + 1})" >Next</button>
+                    </li>
+                    </ul>
+                    </nav>`
+        } else {
+            html += `<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">`
+            html += `<li class="page-item" >
+            <button class="page-link" onclick="loadRatings(${currentPage - 1})">Previous</button>
+            </li>`
+            html += `<li  class="page-item"><button class="page-link" onclick="loadRatings(${currentPage - 1})" >${currentPage - 1}</button></li>`;
+            html += `<li class="page-item active"><button class="page-link" onclick="loadRatings(${currentPage})" >${currentPage}</button></li>`;
+            html += `<li class="page-item"><button class="page-link"onclick="loadRatings(${currentPage + 1})"  >${currentPage + 1}</button></li>`;
+            html += `<li class="page-item">
+                <button class="page-link"onclick="loadRatings(${currentPage + 1})" >Next</button>
+                    </li>
+                    </ul>
+                    </nav>`
+        }
+        return html;
+    }
+    // Load product ratings
+    loadRatings(1);
+</script>
+<script>
+    function addShoppingCart(idProduct) {
+        let numProductOder = parseInt($('#numProductAddShopping').val());
+        let quantityProduct = $("#quantity").html();
+
+        quantityProduct = parseInt(quantityProduct.match(/\d+/)[0]);
+
+
+        if (numProductOder <= 0) {
+            $('#numProductWasAdded').html(`Vui lòng thêm sản phẩm lớn hơn 1`);
+        } else if (numProductOder > quantityProduct) {
+            $('#numProductWasAdded').html(`Quá sản phẩm hiện có! Mời kiểm tra lại!`);
+        } else {
+            $('#numProductWasAdded').html(`Đã thêm ${numProductOder} sản phẩm vào giỏ hàng`);
+            numProductOder = parseInt(numProductOder);
+            $.ajax({
+                url: `/api/shoppingCart/addShoppingCart`,
+                method: 'POST',
+                data: {
+                    idProduct,
+                    numProductOder,
+                },
+                success: function (result) {
+                    console.log(result);
+                }
+            })
+
+        }
+    }
+</script>
+{{/section}}

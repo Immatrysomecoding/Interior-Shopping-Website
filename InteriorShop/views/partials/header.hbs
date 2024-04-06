@@ -1,0 +1,53 @@
+<header class="header">
+  <div class="header__top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-11 col-md-11">
+          <div class="header__top__right align-right">
+            <div class="header__top__right__auth align-right">
+              {{#if user}}
+              <div style="font-size: 14px; display:inline-block">
+                <i class="fas fa-user-check"></i>
+                Hello
+                {{user.name}}
+              </div>
+              <a href="/myaccount">
+                <i class="fa fa-user" style="margin-left: 10px; display:inline-block"></i>
+                Tài Khoản</a>
+              <a href="/myaccount">
+                <i class="fas fa-sign-out-alt" style="margin-left: 10px; display:inline-block"></i>
+                Đăng Xuất</a>
+              {{else}}
+              <a href="/login">
+                <i class="fas fa-sign-in-alt" style="margin-left: 10px; display:inline-block"></i>
+                Đăng nhập</a>
+              <a href="/register"><i class="fa fa-user-plus" style="margin-left: 10px; display:inline-block"></i>
+                Đăng ký</a>
+              {{/if}}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <div class="header__logo">
+          <a href="/"><img src="/img/logo.png" alt="" /></a>  {{!--Ảnh logo--}}
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <nav class="header__menu">
+          <ul>
+            <li class="{{#if home}}active{{/if}}"><a href="/home">Trang chủ</a></li>
+            <li class="{{#if shop}}active{{/if}}"><a href="/shop-grid">Mua sắm</a></li>
+            <li class="{{#if post}}active{{/if}}"><a href="/post">Bài viết</a></li>
+            <li class="{{#if contact}}active{{/if}}"><a href="/contact">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,16 @@
+
+  .listproduct{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    justify-content: space-between;
+   
+}
+.proimg{
+    
+    display: flex;
+    flex-direction: row;
+}
+.productItem{
+    margin-top: 5px;
+}

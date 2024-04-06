@@ -1,0 +1,218 @@
+{{>header page="page"}}
+{{>hero}}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Changcannang</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/home">Trang Chủ</a>
+                        <span>Giỏ Hàng</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <div id="editForm">
+                            <form id="formUpdateProductOrder">
+                            </form>
+                        </div>
+                        <tbody id="tableProductOrder">
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a href="/shop-grid" class="primary-btn cart-btn" style="background: #7fad39; color: #f8f9fa;">Tiếp
+                        tục mua sắm</a>
+                    <button onclick="updateListProductOder()" class="primary-btn cart-btn cart-btn-right"
+                        style="background: #7fad39;border: aliceblue;color: #f8f9fa;" data-toggle="modal"
+                        data-target="#notification">
+                        {{!-- <span class="icon_loading"></span> --}}
+                        Cập nhật giỏ hàng</button>
+                </div>
+            </div>
+            <div class="col-lg-6"> 
+                <div class="shoping__continue">
+                    <div class="shoping__discount">
+                        <h5>Mã giảm giá</h5>
+                        <form action="#">
+                            <input type="text" placeholder="Điền mã giảm giá của bạn">
+                            <button type="submit" class="site-btn">Áp dụng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Giỏ hàng</h5>
+                    <ul>
+                        {{!-- <li>Subtotal <span>$454.98</span></li> --}}
+                        <li id="sumPrice"></li>
+                    </ul>
+                    <a href="/checkout" class="primary-btn">THANH TOÁN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="notification-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notification-label">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="notice">
+                Cập nhật thành công giỏ hàng
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shopping Cart Section End -->
+{{#section 'script'}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<script>
+    function loadShoppingCart() {
+
+        $("#formUpdateProductOrder").remove();
+        let fieldSet = $("<form id=\"formUpdateProductOrder\"></form>");
+        $('#editForm').append(fieldSet);
+        $.getJSON("/api/shoppingCart/getShoppingCart", async function (data) {
+
+            let html = ``;
+            let listProductOrder = data.data;
+            let sumPrice = 0;
+            for await (let productOrder of listProductOrder) {
+                console.log(productOrder);
+                let tolPrice = productOrder.quantity * productOrder.unitPrice;
+                sumPrice += tolPrice;
+                let tolPriceVal = numeral(tolPrice).format("0,0") + " đ";
+                let unitPriceVal = numeral(productOrder.unitPrice).format("0,0") + "đ";
+                html += `<tr>
+                                <td class="shoping__cart__item">
+                                    <img src="${productOrder.image}" alt="" style="width:101px; height:100px">
+                                    <h5>${productOrder.name}</h5>
+                                </td>
+                                <td class="shoping__cart__price">
+                                    ${unitPriceVal}
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" name="num-${productOrder._id}" value="${productOrder.quantity}">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="shoping__cart__total">
+                                    ${tolPriceVal}đ
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <span class="icon_close" onclick="removeShoppingCart('${productOrder._id}')" ></span>
+                                </td>
+                                <td>
+                                
+                                 </td>
+                            </tr>
+                            `
+                $("<input />").attr("type", "hidden")
+                    .attr("name", `${productOrder._id}`)
+                    .attr("value", `${productOrder.quantity}`).appendTo('#formUpdateProductOrder')
+            }
+            $('#tableProductOrder').html(html);
+            let sumPriceVal = numeral(sumPrice).format("0,0") + " đ";
+            $('#sumPrice').html(`Tổng tiền <span>${sumPriceVal}</span>`);
+        })
+    }
+    loadShoppingCart()
+</script>
+<script>
+    function removeShoppingCart(idProductOrder) {
+        console.log(idProductOrder);
+        $.ajax({
+            url: `/api/shoppingCart/removeProductOder`,
+            method: 'PUT',
+            data: {
+                idProductOrder,
+            },
+            success: async function (result) {
+                console.log(result);
+                await loadShoppingCart();
+            }
+        })
+    }
+</script>
+<script>
+    async function updateListProductOder() {
+
+        let listProductOrder = await $("#formUpdateProductOrder").serializeArray();
+        let check = true;
+        for (let i = 0; i < listProductOrder.length; i++) {
+            let quantity = parseInt($(`[name='num-${listProductOrder[i].name}']`).val());
+            console.log(quantity);
+            if (quantity <= 0) {
+                check = false;
+                break;
+            }
+
+            listProductOrder[i].value = quantity;
+
+        }
+        if (!check) {
+            console.log("hicc")
+            $("#notice").html(`Vui lòng kiểm tra lại số liệu!`);
+            return;
+
+        } else {
+            $("#notice").html(`Cập nhật thành công giỏ hàng!`);
+        }
+        $.ajax({
+            url: `/api/shoppingCart/updateShoppingCart`,
+            method: 'PUT',
+            data: {
+                listProductOrder: listProductOrder,
+            },
+            success: async function (result) {
+                console.log(result);
+                await loadShoppingCart();
+            }
+        })
+    }
+</script>
+{{/section}}

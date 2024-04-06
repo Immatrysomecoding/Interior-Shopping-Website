@@ -1,0 +1,115 @@
+
+.navbar {
+  background-color: #060b26;
+  height: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu {
+  background-color: #060b26;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+  z-index: 100;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.nav-text a:hover {
+  background-color: #1a83ff;
+}
+
+.nav-menu-items {
+  width: 100%;
+  position: absolute;
+  left :-15px;
+
+}
+
+.navbar-toggle {
+  background-color: #060b26;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+span {
+  margin-left: 16px;
+}
+#dropdown-basic{
+  border: none; /* Loại bỏ border */
+  background-color: transparent; 
+  background: none;
+  border: none;
+  font-size:25px;
+}
+.container-notification{
+  max-height: 700px;
+  width: 400px;
+  overflow: auto;
+}
+.body-noti{
+  margin: 10px;
+  
+}
+.new-noti{
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  color: green;
+}
+.selection{
+width:240px;
+font-size:20px;
+
+
+}
+
+.qwe{
+  margin: 10px;
+}
+.menu-margin{
+  margin-left:400px ;
+}
+.home-image{
+  margin-left: 100px;
+}

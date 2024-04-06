@@ -1,0 +1,350 @@
+{{>header shop="shop"}}
+{{>hero category=category}}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Changcannang</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Trang Chủ</a>
+                        <span>Cửa Hàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    <div class="sidebar__item">
+                        <h4>Phân loại</h4>
+                        <ul>
+                            {{#each category}}
+                            <li><a href="/shop-grid/{{this.idCategory}}">{{this.name}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="sidebar__item">
+                        <h4>Giá</h4>
+
+                        <form id="slider-search-form" action="/shop-grid/search" method="GET">
+                            <div class="price-range-wrap">
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                    data-min="0" data-max="50000000">
+
+                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+
+
+                                </div>
+                                <div class="range-slider">
+                                    <div class="price-input">
+                                        <input type="hidden" name="name" value="{{name}}">
+                                        <input type="hidden" id="hidden-min-price" value="{{minPrice}}">
+                                        <input type="hidden" id="hidden-max-price" value="{{maxPrice}}">
+                                        <input type="text" id="minamount" name="minPrice">
+                                        <input type="text" id="maxamount" name="maxPrice">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button id="btn-search-slider" class="btn btn-primary btn-block">Áp dụng</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="sidebar__item">
+                        <div class="latest-product__text">
+                            <h4>Mới nhất</h4>
+                            <div class="latest-product__slider owl-carousel">
+                                <div class="latest-prdouct__slider__item">
+
+                                    {{#each latestProducts }}
+                                    <a href="/shop-grid/{{this.url}}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img style="width: 110px;" src="{{this.image}}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{this.name}}</h6>
+                                            <span>{{format this.price}}</span>
+                                        </div>
+                                    </a>
+                                    {{/each}}
+
+                                </div>
+                                <div class="latest-prdouct__slider__item">
+                                    {{#each latestProducts }}
+                                    <a href="/shop-grid/{{this.url}}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img style="width: 110px;" src="{{this.image}}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{this.name}}</h6>
+                                            <span>{{format this.price}}</span>
+                                        </div>
+                                    </a>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
+                <div class="product__discount">
+                    <div class="section-title product__discount__title">
+                        <h2>Giảm giá</h2>
+                    </div>
+                    <div class="row">
+                        <div class="product__discount__slider owl-carousel">
+
+                            {{#each products}}
+                            <div class="col-lg-4">
+                                <div class="product__discount__item">
+                                    <div class="product__discount__item__pic set-bg" data-setbg="{{this.image}}">
+                                        <div class="product__discount__percent">-20%</div>
+                                        <ul class="product__item__pic__hover">
+                                            <li style="cursor: pointer;"><a id="addCart-{{this.idProduct}}"
+                                                    onclick="addShoppingCart('{{this.idProduct}}')"
+                                                    value="{{this.idProduct}}" data-toggle="modal"
+                                                    data-target="#notification"><i class="fa fa-shopping-cart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__discount__item__text">
+                                        <span>{{this.category}}</span>
+                                        <h5><a href="/shop-grid/{{this.url}}">{{this.name}}</a></h5>
+                                        <div class="product__item__price">{{format this.price}}
+                                            <span>
+                                                {{ format (math this.price "*" 1.2)}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+
+                        </div>
+                    </div>
+                    <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="filter__sort">
+                                    <span>Bộ lọc</span>
+                                    <select id="sort-price">
+                                        <option value="0">Mặc định</option>
+                                        <option value="-1">Giá giảm dần</option>
+                                        <option value="1">Giá tăng dần</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="filter__found">
+                                    <h6><span>{{size}}</span> sản phẩm được tìm thấy</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row list-product">
+
+                        {{#each products}}
+                        <div class="col-lg-4 col-md-6 col-sm-6 item-product">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg">
+                                    <img src="{{this.image}}" alt="">
+                                    <ul class="product__item__pic__hover">
+                                        <li style="cursor: pointer;"><a id="addCart-{{this.idProduct}}"
+                                                onclick="addShoppingCart('{{this.idProduct}}')"
+                                                value="{{this.idProduct}}" data-toggle="modal"
+                                                data-target="#notification"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="/shop-grid/{{this.url}}">{{this.name}}</a></h6>
+                                    <h5 id="price-{{@index}}">{{format this.price}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                    <div class="product__pagination center">
+
+                        {{#each leftPage}}
+                        {{#if this.flag}}
+                        <a href="{{this.paginationLink}}"><i class="fas fa-long-arrow-alt-left"></i></a>
+                        {{/if}}
+                        {{/each}}
+                        {{!-- {{#pageIf currentPage '==' 1}}
+                        <a href="/shop-grid?page=1"><i class="fa fa-long-arrow-left"></i></a>
+                        {{else}}
+                        <a href="/shop-grid?page={{leftPage this}}"><i class="fa fa-long-arrow-left"></i></a>
+                        {{/pageIf}}
+
+                        {{#pageIf currentPage '==' 1}}
+                        <a href="/shop-grid?page=1"
+                            style="background: #7fad39; border-color: #7fad39; color: #ffffff;">1</a>
+                        <a href="/shop-grid?page=2">2</a>
+                        <a href="/shop-grid?page=3">3</a>
+                        {{else}}
+                        <a href="/shop-grid?page={{leftPage this}}">{{leftPage this}}</a>
+                        <a href="/shop-grid?page={{ this}}"
+                            style="background: #7fad39; border-color: #7fad39; color: #ffffff;">{{ this}}</a>
+                        <a href="/shop-grid?page={{rightPage this}}">{{rightPage this}}</a>
+                        {{/pageIf}}
+
+                        {{#currentPage currentPage}}
+                        <a href="/shop-grid/?page={{rightPage this}}"><i class="fas fa-long-arrow-alt-right"></i></a>
+                        {{/currentPage }} --}}
+
+
+                        {{#each pagination}}
+                        <a class="{{#if this.flag}} active {{/if}}"
+                            href="{{this.paginationLink}} ">{{this.currentPage}}</a>
+                        {{/each}}
+
+                        {{#each rightPage}}
+                        {{#if this.flag}}
+                        <a href="{{this.paginationLink}}"><i class="fas fa-long-arrow-alt-right"></i></a>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="notification-label"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notification-label">Thông báo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Đã thêm 1 sản phẩm vào giỏ hàng
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- Product Section End -->
+{{#section 'script'}}
+<script>
+    function addShoppingCart(idProduct) {
+        let numProductOder = 1;
+
+        $.ajax({
+            url: `/api/shoppingCart/addShoppingCart`,
+            method: 'POST',
+            data: {
+                idProduct,
+                numProductOder,
+            },
+            success: function (idProduct) {
+                console.log("xong");
+                $('#exampleModal').trigger('focus')
+            }
+        })
+    }
+</script>
+
+{{/section}}
+
+{{#section 'slider_script'}}
+<script>
+    let minPrice = $('#hidden-min-price').val();
+    let maxPrice = $('#hidden-max-price').val();
+    if (minPrice != 0 && maxPrice != 0) {
+        $(".price-range").slider('values', 0, minPrice);
+        $(".price-range").slider('values', 1, maxPrice);
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0
+        })
+        minPrice = formatter.format(minPrice);
+        maxPrice = formatter.format(maxPrice);
+        $("#minamount").val(minPrice);
+        $("#maxamount").val(maxPrice);
+    }
+
+    $("#btn-search-slider").on("click", function () {
+        let minPrice = $('#minamount').val();
+        let maxPrice = $('#maxamount').val();
+
+        minPrice = minPrice.slice(1, minPrice.length);
+        maxPrice = maxPrice.slice(1, maxPrice.length);
+
+        minPrice = parseFloat(minPrice.replace(/,/g, ""));
+        maxPrice = parseFloat(maxPrice.replace(/,/g, ""));
+        $("#minamount").val(minPrice);
+        $("#maxamount").val(maxPrice);
+        $("#slider-search-form").submit();
+    });
+</script>
+{{/section}}
+
+{{#section 'sort_by_price'}}
+<script>
+    const originalHtml = $(".list-product").html();
+
+    const products = $(".item-product");
+    const length = products.length;
+    const listPrice = [];
+    for (let i = 0; i < length; i++) {
+        const product = products[i];
+        let price = $("#price-" + i).html();
+        price = price.slice(0, price.length - 1);
+        price = parseFloat(price.replace(/,/g, ""));
+        listPrice.push({
+            product,
+            price
+        });
+    }
+
+    $("#sort-price").on("change", function () {
+        let sortPrice = $(this).val();
+
+        if (sortPrice == 1) {
+            listPrice.sort(function (a, b) {
+                return a.price - b.price;
+            });
+        } else if (sortPrice == -1) {
+            listPrice.sort(function (a, b) {
+                return b.price - a.price;
+            });
+        } else if (sortPrice == 0) {
+            $(".list-product").empty();
+            $(".list-product").html(originalHtml);
+            return;
+        }
+
+        let html = "";
+        for (let i = 0; i < length; i++) {
+            html += listPrice[i].product.outerHTML;
+        }
+        $(".list-product").empty();
+        $(".list-product").html(html);
+    });
+
+</script>
+{{/section}}

@@ -1,0 +1,68 @@
+<html lang="en">
+  <head>
+    <link rel='shortcut icon' type="image/png" href='/img/title/icon-shop.png' />
+    <title>Đăng Nhập</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/style_login.css" />
+  </head>
+  <body style="background-image: url(/img/background/bg-login.jpg); background-size: cover;">
+    <section class="ftco-section">
+      <div class="container">
+        <div class="login-content" style="max-width:400px">
+          <h1 class="title">Đăng Nhập</h3>
+          <form method="POST" action="/login" class="login-form">
+            {{#if message}}
+            <div class="alert alert-success" role="alert" style="color: rgb(44, 208, 44);">
+              {{message}}
+            </div>
+            {{/if}}
+
+            {{#wrongLogin}}
+            <div class="alert alert-danger" role="alert" style="color: red;">
+              Email hoặc mật khẩu không đúng!
+            </div>
+            {{/wrongLogin}}
+
+            {{#error}}
+            <div class="alert alert-danger" role="alert" style="color:red">
+              Bạn phải đăng nhập để mua hàng!
+            </div>
+            {{/error}}
+
+            <div class="form-group">
+              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span>
+              </div>
+              <input name="email" type="text" class="form-control rounded-left" placeholder="Tài Khoản" required />
+            </div>
+            <div class="form-group">
+              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span>
+              </div>
+              <input name="password" type="password" class="form-control rounded-left" placeholder="Mật Khẩu"
+                required />
+            </div>
+            <div>
+              <button value="Log In" type="submit" class="btn btn-primary rounded submit">Đăng Nhập</button>
+            </div>
+            <div class="w-100 text-center signuphere">
+              <p class="mb-1">Không Có Tài Khoản?
+                <a href="/register">Đăng Ký</a>
+              </p>
+              <p><a href="/forgot-password">Quên Mật Khẩu</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="/js/jquery_login.min.js"></script>
+    <script src="/js/popper_login.js"></script>
+    <script src="/js/bootstrap_login.min.js"></script>
+    <script src="/js/main_login.js"></script>
+
+  </body>
+
+</html> 
+
