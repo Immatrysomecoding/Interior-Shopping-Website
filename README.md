@@ -30,26 +30,57 @@ The Interior Shopping Website allows users to:
 - Proceed to checkout and complete the purchase
 - View their order history and account information
 
-## Technologies Used
+## Mainly Technologies Used
+- html
+- css
+- javascript
 - React.js
+- Json
 - Redux
 - React Router
-- Axios
 - Styled Components
 - Jest and Enzyme (for testing)
 
 ## Project Structure
-The project's folder structure is as follows:
-- `src/`
-  - `components/`
-  - `pages/`
-  - `store/`
-  - `utils/`
-  - `App.js`
-  - `index.js`
-- `public/`
-  - `index.html`
-  - `favicon.ico`
+
+The project is divided into two main components:
+
+1. **Admin Dashboard**
+   - **backend/**
+     - **controllers/**
+     - **models/**
+     - **routes/**
+     - **utils/**
+     - `index.js`
+     - `package-lock.json`
+     - `package.json`
+   - **frontend/**
+     - **.vscode/**
+     - **public/**
+     - **src/**
+     - `.gitignore`
+     - `README.md`
+     - `package-lock.json`
+     - `package.json`
+2. **Interior Shopping Website**
+   - `README.md`
+
+## Features
+
+### Admin Dashboard
+- User Management
+- Product Management
+- Order Management
+- Notification Management
+- Revenue Tracking
+
+### Interior Shopping Website
+- Browse and search for home decor and furnishing items
+- Filter and sort products
+- Add items to a shopping cart
+- Checkout and complete purchases
+- View order history and account information
+
 
 ## Contributing
 We welcome contributions to the Interior Shopping Website project. If you'd like to contribute, please follow these steps:
@@ -61,7 +92,8 @@ We welcome contributions to the Interior Shopping Website project. If you'd like
 5. Submit a pull request
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+Feel free to use xd
 
 ## Contact
-If you have any questions or feedback, please feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
+Group 4/ IT/ 2021/ hcmus/ vn
+or pm me
